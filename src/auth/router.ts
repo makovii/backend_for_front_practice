@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Router } from 'express-serve-static-core';
-import { AuthController } from './controller';
+import { AuthController } from './auth.controller';
 import { inject, injectable } from 'inversify';
 import { CONTAINER_TYPES } from '../di/TYPES';
 

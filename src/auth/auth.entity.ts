@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcryptjs';
 import { ENCODING_SALT } from "../constants";
-import { IAuthEntity } from './interface/entity.interface';
+import { IAuthEntity } from './interface/auth.entity.interface';
 import { AuthRepository } from './repository/auth.repository';
-import { HttpException } from './errors/HttpException';
+import { HttpException } from '../errors/HttpException';
 import { SAME_EMAIL, WRONG_EMAIL_OR_PASS } from '../response';
 import { AuthMongo } from './interface/authMongo.interface';
 import { JwtService } from './jwtStrategy';

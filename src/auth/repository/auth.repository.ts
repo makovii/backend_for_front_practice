@@ -1,4 +1,4 @@
-import { IAuthRepository } from "../interface/repository.interface";
+import { IAuthRepository } from "../interface/auth.repository.interface";
 import { AuthEntity } from "../auth.entity";
 import { Auth } from "./auth.model";
 import { AuthMapper } from "../auth.mapper";

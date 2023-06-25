@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { AuthEntity } from "./auth.entity";
 import { inject, injectable } from 'inversify';
 import { CONTAINER_TYPES } from "../di/TYPES";
+import { AuthDto } from "./auth.dto";
 
 @injectable()
 export class AuthController {
@@ -12,7 +13,7 @@ export class AuthController {
 
   public createUser = async (req: Request, res: Response) => {
     try {
-      const { body }: { body: { name: string, email: string, password: string } } = req;
+      const { body }: { body: AuthDto } = req;
 
       const result = await this.authEntity.registration(body.email, body.name, body.password);
       res.statusCode = 200;
@@ -28,7 +29,7 @@ export class AuthController {
 
   public login = async (req: Request, res: Response) => {
     try {
-      const { body }: { body: { name: string, email: string, password: string } } = req;
+      const { body }: { body: AuthDto } = req;
 
       const result = await this.authEntity.login(body.email, body.password);
       res.statusCode = 200;
