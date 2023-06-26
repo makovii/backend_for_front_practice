@@ -56,7 +56,10 @@ export class PostEntity implements IPostEntity{
   }
 
   public async getPost(id: string): Promise<PostEntity | HttpException> {
-    const post = await this.postRepository.getPost(id);
-    return post;
+    return await this.postRepository.getPost(id);
+  }
+
+  public async getAllPosts(): Promise<PostEntity[]> {
+    return await this.postRepository.getAllPosts();
   }
 }

@@ -32,4 +32,14 @@ export class PostRepository implements IPostRepository {
     const entity = PostMapper.RepositoryToEntity(post);
     return entity;
   }
+
+  public async getAllPosts(): Promise<PostEntity[]> {
+    const posts = await this.postModel.find({});
+
+    const output = posts.map((item: PostMongo) => {
+      return PostMapper.RepositoryToEntity(item);
+    })
+
+    return output;
+  }
 }

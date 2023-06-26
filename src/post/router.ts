@@ -15,7 +15,7 @@ class RouterPost {
 
     this.router.post('/createPost', this.postController.createPost);
     this.router.get('/getPost', this.postController.getPost); // with parametr ?id={idNumber}
-    this.router.get('/getPost', this.postController.getAllPost);
+    this.router.get('/getAllPost', this.postController.getAllPosts);
   }
 
   public getRouter(): express.Router {

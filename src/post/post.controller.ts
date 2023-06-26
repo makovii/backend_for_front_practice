@@ -49,4 +49,14 @@ export class PostController {
     }
   }
 
+  public getAllPosts = async (req: Request, res: Response) => {
+    const posts = await this.postEntity.getAllPosts();
+
+    const output = posts.map((item: PostEntity) => {
+      return this.postMapper.EntityToDto(item);
+    })
+
+    res.statusCode = 200;
+    return res.json(output);  
+  }
 }
