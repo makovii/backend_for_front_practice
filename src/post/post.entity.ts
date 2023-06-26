@@ -53,4 +53,9 @@ export class PostEntity implements IPostEntity{
 
     return post;
   }
+
+  public async getPost(id: string): Promise<PostEntity> {
+    const post = await this.postRepository.getPost(id);
+    return post;
+  }
 }

@@ -9,6 +9,7 @@ import { AuthEntity } from "../auth/auth.entity";
 import { PostController } from "../post/post.controller";
 import RouterPost from "../post/router";
 import { PostEntity } from "../post/post.entity";
+import { PostMapper } from "../post/post.mapper";
 
 export const MainContainer = new Container();
 
@@ -25,5 +26,7 @@ MainContainer.bind<PostController>(CONTAINER_TYPES.PostController).to(PostContro
 
 MainContainer.bind<AuthEntity>(CONTAINER_TYPES.AuthEntity).to(AuthEntity);
 MainContainer.bind<PostEntity>(CONTAINER_TYPES.PostEntity).to(PostEntity);
+
+MainContainer.bind<PostMapper>(CONTAINER_TYPES.PostMapper).to(PostMapper);
 
 

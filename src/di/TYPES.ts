@@ -13,4 +13,7 @@ export const CONTAINER_TYPES = {
     // Entity
     AuthEntity: Symbol.for('AuthEntity'),
     PostEntity: Symbol.for('PostEntity'),
+
+    // Mappers
+    PostMapper: Symbol.for('PostMapper'),
 }
