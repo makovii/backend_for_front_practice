@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 import { CONTAINER_TYPES } from "../di/TYPES";
 import { PostEntity } from "./post.entity";
 import { PostMapper } from "./post.mapper";
+import { HttpException } from "../errors/HttpException";
 
 @injectable()
 export class PostController {
@@ -31,10 +32,14 @@ export class PostController {
     try {
       const id = req.query.id as string;
       const result = await this.postEntity.getPost(id);
-      // const result = await this.postEntity.createPost(req.body);
-      const output = this.postMapper.EntityToDto(result);
-      res.statusCode = 200;
-      return res.json(output);
+      if(result instanceof HttpException) {
+        res.statusCode = 400;
+        res.json(result.message);
+      } else {
+        const output = this.postMapper.EntityToDto(result);
+        res.statusCode = 200;
+        return res.json(output);        
+      }
     } catch (error) {
       res.statusCode = 500;
       return res.json({

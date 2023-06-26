@@ -1,3 +1,4 @@
+import { HttpException } from "../../errors/HttpException";
 import { PostMongo } from "../interface/PostMongo.interface";
 import { IPostRepository } from "../interface/post.repository.interface";
 import { PostEntity } from "../post.entity";
@@ -18,17 +19,17 @@ export class PostRepository implements IPostRepository {
     return entity;
   }
 
-  public async getPost(id: string): Promise<PostEntity> {
+  public async getPost(id: string): Promise<PostEntity | HttpException> {
     let post;
     try {
       post = await this.postModel.findOne({ _id: id });
-      // return post;
+      
     } catch (e) {
       // TODO: create and return error      
       console.log(e);
     }
+    if(!post) return new HttpException(`There isn't any post with id - ${id}`, 400)
     const entity = PostMapper.RepositoryToEntity(post);
-
     return entity;
   }
 }

@@ -5,6 +5,7 @@ import {  injectable } from 'inversify';
 import { IPostEntity } from './interface/post.entity.interface';
 import { PostRepository } from './repository/post.repository';
 import { PostMongo } from './interface/PostMongo.interface';
+import { HttpException } from '../errors/HttpException';
 
 
 @injectable()
@@ -54,7 +55,7 @@ export class PostEntity implements IPostEntity{
     return post;
   }
 
-  public async getPost(id: string): Promise<PostEntity> {
+  public async getPost(id: string): Promise<PostEntity | HttpException> {
     const post = await this.postRepository.getPost(id);
     return post;
   }
